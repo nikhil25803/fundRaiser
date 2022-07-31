@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+
+<div class="container mt-3 mb-3">
+    {% for message in messages %}
+
+    <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+        {{message}}
+    </div>
+
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="mail">Username</label>
+        <input type="text" name="uname" id="mail" class="form-control">
+
+        <label for="pass1">Password</label>
+        <input type="password" name="password" id="pass1" class="form-control">
+
+        <button class="btn btn-outline-primary mt-1">Login</button>
+    </form>
+</div>
+
+
+{% endblock body %}

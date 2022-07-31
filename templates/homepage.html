@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Homepage{% endblock title %}
+{% block body %}
+
+<!-- carousel -->
+
+{% for message in messages %}
+
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+    {{message}}
+</div>
+
+{% endfor %}
+
+<div class="border-start border-end border-warning m-3">
+    <div id="carouselExampleIndicators" class="carousel slide m-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner m-1">
+            <div class="carousel-item active">
+                <img src="{% static 'quote1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'quote2.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'quote3.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+<hr>
+
+
+<div class="border-start border-end border-warning m-3">
+    <h3 class="border-bottom border-warning  text-center m-1">
+        About Us
+    </h3>
+
+    <div class="card-body">
+        <h5 class="card-title">Habi Jabi 1</h5>
+        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, commodi rem quo ullam
+            repellat dicta dignissimos a dolorem cupiditate laudantium at necessitatibus non quia odit sit neque
+            temporibus aperiam velit minima ipsa fugiat nostrum? Autem molestiae doloribus eligendi, hic velit tenetur
+            voluptatem amet minus mollitia quia repellendus cumque, ex et.</p>
+
+        <h5 class="card-title">Habi Jabi 2</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit facere numquam animi cum
+            officia non saepe recusandae? Placeat odit possimus minima voluptate illum deleniti deserunt quos vel, ut
+            tempora error!</p>
+
+        <h5 class="card-title">Habi Jabi 3</h5>
+        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium amet voluptatum iure,
+            quasi ex fugiat?.</p>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="border-start border-end border-warning m-3">
+    <h3 class="border-bottom border-warning m-1 text-center">
+        Recent Fund Raising Posts
+    </h3>
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 m-2">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Post Title</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<hr>
+
+
+{% endblock body %}

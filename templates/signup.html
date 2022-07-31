@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}SignUp{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <h3 class="text-center border-warning border-bottom m-3">Create an Account</h3>
+</div>
+
+{% for message in messages %}
+
+<h5>{{message}}</h5>
+
+{% endfor %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- {{register_form|crispy}} -->
+
+        <label for="fname">First Name</label>
+        <input type="text" name="first_name" id="fname" class="form-control">
+
+        <label for="lname">Last Name</label>
+        <input type="text" name="last_name" id="lname" class="form-control">
+
+        <label for="mail">Email Address</label>
+        <input type="email" name="email" id="mail" class="form-control">
+
+        <label for="pass1">Password</label>
+        <input type="password" name="password1" id="pass1" class="form-control">
+
+        <label for="pass2">Confirm Password</label>
+        <input type="password" name="password2" id="pass2" class="form-control">
+
+        <button class="btn btn-outline-primary mt-1">Register</button>
+    </form>
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Donate{% endblock title %}
+
+{% block body %}
+
+
+<div class="container">
+    <form class="d-flex mt-3">
+        <input class="form-control me-2" type="search" placeholder="Search by Id or Name" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="border-start border-end border-warning m-3">
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Post Title</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="card-footer">
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock body %}

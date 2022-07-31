@@ -50,33 +50,6 @@
 
 <hr>
 
-
-<div class="border-start border-end border-warning m-3">
-    <h3 class="border-bottom border-warning  text-center m-1">
-        About Us
-    </h3>
-
-    <div class="card-body">
-        <h5 class="card-title">Habi Jabi 1</h5>
-        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, commodi rem quo ullam
-            repellat dicta dignissimos a dolorem cupiditate laudantium at necessitatibus non quia odit sit neque
-            temporibus aperiam velit minima ipsa fugiat nostrum? Autem molestiae doloribus eligendi, hic velit tenetur
-            voluptatem amet minus mollitia quia repellendus cumque, ex et.</p>
-
-        <h5 class="card-title">Habi Jabi 2</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit facere numquam animi cum
-            officia non saepe recusandae? Placeat odit possimus minima voluptate illum deleniti deserunt quos vel, ut
-            tempora error!</p>
-
-        <h5 class="card-title">Habi Jabi 3</h5>
-        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium amet voluptatum iure,
-            quasi ex fugiat?.</p>
-
-    </div>
-</div>
-
-<hr>
-
 <div class="border-start border-end border-warning m-3">
     <h3 class="border-bottom border-warning m-1 text-center">
         Recent Fund Raising Posts
@@ -93,7 +66,11 @@
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
                 </div>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                {% if user.is_authenticated %}
+                <a href="#" class="btn btn-primary">Donate</a>
+                {% else %}
+                <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
+                {% endif %}
                 <div class="card-footer">
                     <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
                 </div>
@@ -121,8 +98,30 @@
     </div>
 </div>
 
-
 <hr>
 
+<div class="border-start border-end border-warning m-3">
+    <h3 class="border-bottom border-warning  text-center m-1">
+        About Us
+    </h3>
+
+    <div class="card-body">
+        <h5 class="card-title">Heading 1</h5>
+        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, commodi rem quo ullam
+            repellat dicta dignissimos a dolorem cupiditate laudantium at necessitatibus non quia odit sit neque
+            temporibus aperiam velit minima ipsa fugiat nostrum? Autem molestiae doloribus eligendi, hic velit tenetur
+            voluptatem amet minus mollitia quia repellendus cumque, ex et.</p>
+
+        <h5 class="card-title">Heading 1</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit facere numquam animi cum
+            officia non saepe recusandae? Placeat odit possimus minima voluptate illum deleniti deserunt quos vel, ut
+            tempora error!</p>
+
+        <h5 class="card-title">Heading 1</h5>
+        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium amet voluptatum iure,
+            quasi ex fugiat?.</p>
+
+    </div>
+</div>
 
 {% endblock body %}

@@ -37,7 +37,7 @@
           <!-- If Logged In  -->
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active text-white" href="#">{{user.email}}</a>
+            <a class="nav-link active text-white" href="{% url 'profile-page' %}">{{user.username}}</a>
           </li>
           {% endif %}
 

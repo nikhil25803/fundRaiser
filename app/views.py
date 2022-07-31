@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import NewUserForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -75,11 +76,6 @@ def sign_up(request):
                 user.save()
                 messages.success(
                     request, f'Account created for {first_name} with username - {username} sucessfully')
-
-                # subject = 'Welcome to Donator | A pltform to help others Economically'
-                # message = f"Account created for {first_name} {last_name}\nEmail : {email}\nUsername : {username}\nHappy Helping !!"
-                # from_email = settings.EMAIL_HOST_USER
-                # recipient_lists = [email]
                 try:
                     send_mail(
                         'Subject here', 
@@ -97,3 +93,9 @@ def sign_up(request):
             return redirect('/signup')
 
     return render(request, 'signup.html')
+
+
+@login_required(login_url='/login')
+def profile(request):
+
+    return render(request, 'profile.html')

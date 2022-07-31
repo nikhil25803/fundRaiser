@@ -26,7 +26,11 @@
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
                 </div>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                {% if user.is_authenticated %}
+                <a href="#" class="btn btn-primary">Donate</a>
+                {% else %}
+                <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
+                {% endif %}
                 <div class="card-footer">
                     <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
                 </div>

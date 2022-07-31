@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}} | Profile {% endblock title %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <div class="card">
+        <h5 class="card-header">Welcomme {{user.first_name}}</h5>
+        <div class="card-body">
+            <h5 class="card-title">Username - {{user.username}} | Email address - {{user.email}}</h5>
+            <p class="card-text">All your records and posts are saved here</p>
+
+            <a href="#">
+                <button class="btn btn-primary">
+                    Your Posts
+                </button>
+            </a>
+
+            <a href="#">
+                <button class="btn btn-primary">
+                    Your Posts
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+        <a class="navbar-brand" href="#">Your Posts</a>
+    </nav>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example"
+        tabindex="0">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Post Title</h5>
+                    <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+
+                        <a href="#">
+                            <button class="btn btn-info">
+                                Update
+                            </button>
+                        </a>
+
+                        <a href="#">
+                            <button class="btn btn-danger">
+                                Delete
+                            </button>
+                        </a>
+
+                    </div>
+
+
+                    <div class="card-footer">
+                        <small class="text-muted">Post Id - 123456 | Posted On - 25/08/2003</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+{% endblock body %}

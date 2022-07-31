@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from .forms import NewUserForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from .forms import NewPostForm
+from .models import PostModel
 # Create your views here.
 
 
@@ -98,4 +99,17 @@ def sign_up(request):
 @login_required(login_url='/login')
 def profile(request):
 
-    return render(request, 'profile.html')
+    posts = PostModel.objects.all()
+
+    newPostform = NewPostForm(request.POST or None)
+    if newPostform.is_valid():
+        newPostform.save()
+        messages.sucess(request, 'New post has been created sucessfully')
+        return redirect('/profile')
+
+    context = {
+        'post_form':NewPostForm,
+        'posts':posts,
+    }
+
+    return render(request, 'profile.html', context)

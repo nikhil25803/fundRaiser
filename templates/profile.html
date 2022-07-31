@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{{user.username}} | Profile {% endblock title %}
-
+{% load crispy_forms_tags %}
 {% block body %}
 
+
+
+
+<!-- Welcome Card  -->
 <div class="container mt-3">
     <div class="card">
         <h5 class="card-header">Welcomme {{user.first_name}}</h5>
@@ -12,13 +16,13 @@
             <p class="card-text">All your records and posts are saved here</p>
 
             <a href="#">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" style="width: 25%;">
                     Your Posts
                 </button>
             </a>
 
             <a href="#">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" style="width: 25%;">
                     Your Posts
                 </button>
             </a>
@@ -30,6 +34,27 @@
 
 <hr>
 
+<!-- New Post Form  -->
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Create a new Post
+        </div>
+        <div class="card-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ post_form|crispy }}
+
+                <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Post</button>
+            </form>
+            
+        </div>
+    </div>
+
+</div>
+<hr>
+<!-- Post  Card  -->
 <div class="container">
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
         <a class="navbar-brand" href="#">Your Posts</a>
@@ -38,6 +63,8 @@
         tabindex="0">
 
         <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
+
+
             <div class="col">
                 <div class="card">
                     <h5 class="card-header">Post Title</h5>

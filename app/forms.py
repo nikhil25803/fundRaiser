@@ -1,17 +1,34 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from .models import PostModel
 
-class NewUserForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+
+class NewPostForm(forms.ModelForm):
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
 
-    def save(self, commit=True):
-        user = super(NewUserForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+        model = PostModel
+
+        fields = [
+            'title', 'heading', 'description', 'upi_id', 'image',
+        ]
+
+        labels = {
+            'title': 'Title of the Post',
+            'heading': 'Post heading',
+            'description': 'Describe your post',
+            'upi_id': 'Your UPI ID for the payment',
+            'images': 'Upload an image',
+        }
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control m-1'}),
+
+            'heading': forms.TextInput(attrs={'class': 'form-control m-1'}),
+
+            'description': forms.TextInput(attrs={'class': 'form-control m-1'}),
+
+            'upi_id': forms.TextInput(attrs={'class': 'form-control m-1'}),
+
+        }
+
+    pass

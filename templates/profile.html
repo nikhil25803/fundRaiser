@@ -8,6 +8,16 @@
 
 
 <!-- Welcome Card  -->
+
+{% for message in messages %}
+
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+    {{message}}
+</div>
+
+{% endfor %}
+
+
 <div class="container mt-3">
     <div class="card">
         <h5 class="card-header">Welcomme {{user.first_name}}</h5>
@@ -44,11 +54,9 @@
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                {{ post_form|crispy }}
-
                 <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Post</button>
             </form>
-            
+
         </div>
     </div>
 

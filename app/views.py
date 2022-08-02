@@ -1,4 +1,5 @@
 
+from turtle import title
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -97,6 +98,15 @@ def sign_up(request):
 
 @login_required(login_url='/login')
 def profile(request):
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        upi_id = request.POST['upi_id']
+        # img = request.POST['images']
+
+        print(title, ' BY ', upi_id)
+        return redirect('/profile')
 
 
     return render(request, 'profile.html')

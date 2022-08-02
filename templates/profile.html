@@ -53,6 +53,23 @@
         <div class="card-body">
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1"
+                        rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">UPI ID</label>
+                    <input type="text" class="form-control" name="upi_id" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Banner</label>
+                    <input class="form-control" type="file" name="images" id="formFile">
+                </div>
 
                 <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Post</button>
             </form>

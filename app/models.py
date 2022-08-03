@@ -3,6 +3,7 @@ from django.db import models
 import datetime
 # Create your models here.
 
+
 class NewPostModel(models.Model):
 
     title = models.CharField(max_length=20)
@@ -13,6 +14,6 @@ class NewPostModel(models.Model):
     posted_by = models.CharField(max_length=20)
     post_id = models.CharField(max_length=10)
 
-    def __str(self):
+    def __str__(self):
 
-        return f"{self.title} by {self.posted_on}"
+        return f"{self.title} by {self.posted_by}"

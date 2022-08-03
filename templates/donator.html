@@ -17,26 +17,27 @@
 <div class="border-start border-end border-warning m-3">
 
     <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
+        {% for post in posts %}
         <div class="col">
             <div class="card">
-                <h5 class="card-header">Post Title</h5>
-                <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                <h5 class="card-header">{{post.title}}</h5>
+                <img src="{{post.images.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <h5 class="card-title">Soch raha hu</h5>
+                    <p class="card-text">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
-                <a href="#" class="btn btn-primary">Donate</a>
+                <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>
                 {% else %}
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}
                 <div class="card-footer">
-                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - 25/08/2003</small>
+                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - {{post.posted_on}}</small>
                 </div>
             </div>
 
         </div>
+        {% endfor %}
 
         <div class="col">
             <div class="card">

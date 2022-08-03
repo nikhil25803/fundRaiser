@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from .models import NewPostModel
 # from requests import head
 # Create your views here.
 
@@ -43,7 +44,12 @@ def log_out(request):
 
 def donate_page(request):
 
-    return render(request, 'donator.html')
+    posts = NewPostModel.objects.all()
+    context = {
+        'posts':posts,
+    }
+
+    return render(request, 'donator.html', context)
 
 
 def sign_up(request):

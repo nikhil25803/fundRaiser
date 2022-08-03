@@ -29,7 +29,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = False
 
 ALLOWED_HOSTS = ['https://funds-raiser.herokuapp.com/', '127.0.0.1']
-
+# ALLOWED_HOSTS = []
 
 # Application definition
 

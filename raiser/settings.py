@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()
-import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +28,9 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_503',
     'app',
     "django_browser_reload",
     'crispy_forms',
@@ -51,10 +52,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django_503.middleware.MaintenanceMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'raiser.urls'
@@ -127,8 +127,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 MEDIA_URL = '/media/'
@@ -148,5 +146,3 @@ EMAIL_HOST_USER = str(os.getenv('ACCESS'))
 EMAIL_HOST_PASSWORD = str(os.getenv('KEY'))
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-django_heroku.settings(locals())

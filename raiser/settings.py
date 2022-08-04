@@ -9,10 +9,9 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import imp
 from pathlib import Path
 import os
-import django_heroku
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -27,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://funds-raiser.herokuapp.com/', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -128,7 +127,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = '/media/'
@@ -148,6 +146,3 @@ EMAIL_HOST_USER = str(os.getenv('ACCESS'))
 EMAIL_HOST_PASSWORD = str(os.getenv('KEY'))
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-
-django_heroku.settings(locals())

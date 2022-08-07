@@ -25,14 +25,14 @@
             <h5 class="card-title">Username - {{user.username}} | Email address - {{user.email}}</h5>
             <p class="card-text">All your records and posts are saved here</p>
 
-            <a href="#">
-                <button class="btn btn-primary" style="width: 25%;">
-                    Your Posts
+            <a href="#create_post_section">
+                <button class="btn btn-info" style="width: 25%;">
+                    Create Post
                 </button>
             </a>
 
-            <a href="#">
-                <button class="btn btn-primary" style="width: 25%;">
+            <a href="#user_posts">
+                <button class="btn btn-success" style="width: 25%;">
                     Your Posts
                 </button>
             </a>
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<hr>
+<hr id="create_post_section">
 
 <!-- New Post Form  -->
 <div class="container">
@@ -78,7 +78,11 @@
     </div>
 
 </div>
-<hr>
+
+
+<hr id="user_posts">
+
+
 <!-- Post  Card  -->
 <div class="container">
     <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">

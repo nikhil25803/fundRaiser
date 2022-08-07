@@ -1,5 +1,3 @@
-
-
 from logging import exception
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
@@ -21,7 +19,12 @@ except:
 
 def homepage(request):
 
-    return render(request, 'homepage.html')
+    posts = NewPostModel.objects.all()
+    context = {
+        'posts':posts,
+    }
+
+    return render(request, 'homepage.html', context)
 
 
 def log_in(request):

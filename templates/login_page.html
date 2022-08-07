@@ -4,8 +4,7 @@
 
 {% block body %}
 
-
-<div class="container mt-3 mb-3">
+<div class="container">
     {% for message in messages %}
 
     <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
@@ -13,6 +12,13 @@
     </div>
 
     {% endfor %}
+</div>
+
+<div class="container mt-3 mb-3 border-start border-end border-warning">
+
+    <h3 class="">
+        Login to get started ...
+    </h3>
 
     <form method="POST">
         {% csrf_token %}
@@ -24,6 +30,13 @@
 
         <button class="btn btn-outline-primary mt-1">Login</button>
     </form>
+
+    <hr>
+    
+    <h5 class="text-center">
+        New Here? Click <a href="{% url 'user-register' %}">here</a> to Signup !!
+        
+    </h5>
 </div>
 
 

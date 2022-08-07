@@ -1,14 +1,21 @@
 
-from turtle import title
+
+from logging import exception
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import User 
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from .models import NewPostModel
-# from requests import head
+
+# Other Imports
+try: 
+    from validate_email_address import validate_email
+except:
+    print("Error: while importing:")
+
+
 # Create your views here.
 
 
@@ -62,6 +69,15 @@ def sign_up(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
+
+        try:
+            isExists = validate_email(email, verify=True)
+            if isExists == None:
+                messages.warning(request, "The provided email does not exist. Please enter a valid email address")
+                return redirect('/signup')
+        except:
+            print("Error")
+
 
         generated_userName = email.split('@')
         username = generated_userName[0]

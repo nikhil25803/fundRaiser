@@ -13,6 +13,7 @@ try:
 except:
     print("Error: while importing:")
 
+import random
 
 # Create your views here.
 
@@ -49,6 +50,7 @@ def log_in(request):
 
 def log_out(request):
     logout(request)
+    messages.success(request, 'You are now logged out !')
     return redirect('/')
 
 
@@ -66,29 +68,32 @@ def sign_up(request):
 
     if request.method == 'POST':
 
+        # Collect information entered by the user
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        # username = request.POST.get('uname', 'user')
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
+        
         if len(password1) <8 :
             messages.warning(request, 'Passwrod seems too short, it must at least 8 characters long')
             return redirect('/signup')
         
+        # Validate email address
         try:
             isExists = validate_email(email, verify=True)
             if isExists == None:
                 messages.warning(request, "The provided email does not exist. Please enter a valid email address")
                 return redirect('/signup')
         except:
-            print("Error")
+            print("Continued")
 
-
+        # Generate username for each user slicing the email address
         generated_userName = email.split('@')
         username = generated_userName[0]
 
+        # Check if password entered are same or not
         if password1 == password2:
             if User.objects.filter(email=email).exists():
                 messages.warning(request, 'This email is already registered')
@@ -133,16 +138,23 @@ def profile(request):
         description = request.POST['description']
         upi_id = request.POST['upi_id']
         by = request.user.username
+
+        # For image upload
         files = request.FILES
         image = files.get("images")
-        print(image)
 
+        # Generate unique Id for all posts
+        num = random.randint(0,1000000)
+        post_id = f"{by}{num}"
+
+        # Create a new object in the database
         try:
             entry = NewPostModel.objects.create(
                 title = title,
                 description = description,
                 upi_id = upi_id,
                 posted_by = by,
+                post_id = post_id,
             )
             entry.images = image
             entry.save()

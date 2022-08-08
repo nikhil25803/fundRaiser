@@ -60,11 +60,11 @@
         {% for post in posts %}
         <div class="col">
             <div class="card">
-                <h5 class="card-header">{{post.title}}</h5>
-                <img src="{{post.images.url}}" class="card-img-top" alt="...">
+                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="..." width="400"
+                    height="350">
                 <div class="card-body">
-                    <h5 class="card-title">Soch raha hu</h5>
-                    <p class="card-text">{{post.description}}</p>
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text" style="height: 75px;">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
                 <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>
@@ -72,7 +72,8 @@
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}
                 <div class="card-footer">
-                    <small class="text-muted">Post Id - 123456 | By Nikhil Raj | On - {{post.posted_on}}</small>
+                    <small class="text-muted">Post Id - {{post.post_id}} | By Nikhil Raj | On -
+                        {{post.posted_on}}</small>
                 </div>
             </div>
 

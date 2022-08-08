@@ -1,4 +1,4 @@
-from logging import exception
+import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib import messages
@@ -73,6 +73,10 @@ def sign_up(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
+        if len(password1) <8 :
+            messages.warning(request, 'Passwrod seems too short, it must at least 8 characters long')
+            return redirect('/signup')
+        
         try:
             isExists = validate_email(email, verify=True)
             if isExists == None:
@@ -128,10 +132,26 @@ def profile(request):
         title = request.POST['title']
         description = request.POST['description']
         upi_id = request.POST['upi_id']
-        # img = request.POST['images']
+        by = request.user.username
+        files = request.FILES
+        image = files.get("images")
+        print(image)
 
-        print(title, ' BY ', upi_id)
-        return redirect('/profile')
+        try:
+            entry = NewPostModel.objects.create(
+                title = title,
+                description = description,
+                upi_id = upi_id,
+                posted_by = by,
+            )
+            entry.images = image
+            entry.save()
+            messages.success(request,'Post have been created sucessfully')
+            return redirect('/profile')
 
+        except:
+            messages.warning(request, 'Unable to process your request')
+            return redirect('/profile')
 
-    return render(request, 'profile.html')
+    else:
+        return render(request, 'profile.html')

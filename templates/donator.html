@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card">
                 <h5 class="card-header">{{post.title}}</h5>
-                <img src="{{post.images.url}}" class="card-img-top" alt="...">
+                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Soch raha hu</h5>
                     <p class="card-text">{{post.description}}</p>

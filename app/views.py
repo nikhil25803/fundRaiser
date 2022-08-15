@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib import messages
@@ -6,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from .models import NewPostModel
+from django.core.mail import send_mail
 
 # Other Imports
 try: 
@@ -14,6 +14,8 @@ except:
     print("Error: while importing:")
 
 import random
+
+import os
 
 # Create your views here.
 
@@ -75,7 +77,7 @@ def sign_up(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
-        
+        # Check if password is too short or not
         if len(password1) <8 :
             messages.warning(request, 'Passwrod seems too short, it must at least 8 characters long')
             return redirect('/signup')
@@ -113,9 +115,9 @@ def sign_up(request):
                     request, f'Account created for {first_name} with username - {username} sucessfully')
                 try:
                     send_mail(
-                        'Subject here', 
-                        'Here is the message.', 
-                        'nikhil25803@gmail.com', 
+                        'Welcome Message', 
+                        f'Welcome to Fund Raisers\nThank you for registering on our website.\nYour Credentials are as follows :\nUsername : {username}\nPassword : {password1}\n(*Do not share it with anyone)\nLogin and use the most out of this platform!', 
+                        'nikofficial25@gmail.com', 
                         [email], 
                         fail_silently=False
                     )

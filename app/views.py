@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
@@ -8,7 +8,7 @@ from .models import NewPostModel
 from django.core.mail import send_mail
 
 # Other Imports
-try: 
+try:
     from validate_email_address import validate_email
 except:
     print("Error: while importing:")
@@ -24,7 +24,7 @@ def homepage(request):
 
     posts = NewPostModel.objects.all()
     context = {
-        'posts':posts,
+        'posts': posts,
     }
 
     return render(request, 'homepage.html', context)
@@ -35,7 +35,7 @@ def log_in(request):
     if request.method == 'POST':
         username = request.POST['uname']
         password = request.POST['password']
-        user = authenticate(request,username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
@@ -45,7 +45,7 @@ def log_in(request):
             messages.warning(request, 'Wrong Credentials')
             print('Problem')
             return render(request, 'login_page.html')
-    else:        
+    else:
 
         return render(request, 'login_page.html')
 
@@ -60,7 +60,7 @@ def donate_page(request):
 
     posts = NewPostModel.objects.all()
     context = {
-        'posts':posts,
+        'posts': posts,
     }
 
     return render(request, 'donator.html', context)
@@ -78,15 +78,17 @@ def sign_up(request):
         password2 = request.POST['password2']
 
         # Check if password is too short or not
-        if len(password1) <8 :
-            messages.warning(request, 'Passwrod seems too short, it must at least 8 characters long')
+        if len(password1) < 8:
+            messages.warning(
+                request, 'Passwrod seems too short, it must at least 8 characters long')
             return redirect('/signup')
-        
+
         # Validate email address
         try:
             isExists = validate_email(email, verify=True)
             if isExists == None:
-                messages.warning(request, "The provided email does not exist. Please enter a valid email address")
+                messages.warning(
+                    request, "The provided email does not exist. Please enter a valid email address")
                 return redirect('/signup')
         except:
             print("Continued")
@@ -115,15 +117,15 @@ def sign_up(request):
                     request, f'Account created for {first_name} with username - {username} sucessfully')
                 try:
                     send_mail(
-                        'Welcome Message', 
-                        f'Welcome to Fund Raisers\nThank you for registering on our website.\nYour Credentials are as follows :\nUsername : {username}\nPassword : {password1}\n(*Do not share it with anyone)\nLogin and use the most out of this platform!', 
-                        'nikofficial25@gmail.com', 
-                        [email], 
+                        'Welcome Message',
+                        f'Welcome to Fund Raisers\nThank you for registering on our website.\nYour Credentials are as follows :\nUsername : {username}\nPassword : {password1}\n(*Do not share it with anyone)\nLogin and use the most out of this platform!',
+                        'nikofficial25@gmail.com',
+                        [email],
                         fail_silently=False
                     )
                 except Exception as e:
                     print(e)
-                    
+
                 return redirect('/')
         else:
             messages.error(request, 'Password not matched')
@@ -134,6 +136,15 @@ def sign_up(request):
 
 @login_required(login_url='/login')
 def profile(request):
+
+    # Get filtered data from the Models
+    by_user = request.user.username
+    user_posts = NewPostModel.objects.filter(posted_by = f'{by_user}')
+    print(user_posts)
+    context = {
+        'user_posts':user_posts,
+    }
+
 
     if request.method == 'POST':
         title = request.POST['title']
@@ -146,21 +157,21 @@ def profile(request):
         image = files.get("images")
 
         # Generate unique Id for all posts
-        num = random.randint(0,1000000)
+        num = random.randint(0, 1000000)
         post_id = f"{by}{num}"
 
         # Create a new object in the database
         try:
             entry = NewPostModel.objects.create(
-                title = title,
-                description = description,
-                upi_id = upi_id,
-                posted_by = by,
-                post_id = post_id,
+                title=title,
+                description=description,
+                upi_id=upi_id,
+                posted_by=by,
+                post_id=post_id,
             )
             entry.images = image
             entry.save()
-            messages.success(request,'Post have been created sucessfully')
+            messages.success(request, 'Post have been created sucessfully')
             return redirect('/profile')
 
         except:
@@ -168,4 +179,4 @@ def profile(request):
             return redirect('/profile')
 
     else:
-        return render(request, 'profile.html')
+        return render(request, 'profile.html', context)

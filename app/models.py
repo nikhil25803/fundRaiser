@@ -6,13 +6,13 @@ import datetime
 
 class NewPostModel(models.Model):
 
-    title = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
     images = models.ImageField(upload_to='images/')
-    upi_id = models.CharField(max_length=20, default="")
+    upi_id = models.CharField(max_length=30, default="")
     posted_on = models.DateField(("Date"), default=datetime.date.today)
-    posted_by = models.CharField(max_length=20)
-    post_id = models.CharField(max_length=10)
+    posted_by = models.CharField(max_length=50)
+    post_id = models.CharField(max_length=50)
 
     def __str__(self):
 

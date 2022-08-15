@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="container">
     <form class="d-flex mt-3">
         <input class="form-control me-2" type="search" placeholder="Search by Id or Name" aria-label="Search">
@@ -19,18 +18,18 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
         {% for post in posts %}
         <div class="col">
-            <div class="card">
-                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="..." width="375" height="300">
+            <div class="card" >
+                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
-                    <p class="card-text" style="height: 75px;">{{post.description}}</p>
+                    <p class="card-text">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
                 <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>
                 {% else %}
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}
-                <div class="card-footer">
+                <div class="card-footer" style="position: sticky;">
                     <small class="text-muted">Post Id - {{post.post_id}} | By Nikhil Raj | On - {{post.posted_on}}</small>
                 </div>
             </div>

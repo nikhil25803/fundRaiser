@@ -93,16 +93,12 @@
 
         <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
 
-
+            {% for post in user_posts %}
             <div class="col">
                 <div class="card">
-                    <h5 class="card-header">Post Title</h5>
-                    <img src="{% static 'quote1.jpg' %}" class="card-img-top" alt="...">
+                    <h5 class="card-header">{{post.title}}</h5>
+                    <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-
                         <a href="#">
                             <button class="btn btn-info">
                                 Update
@@ -119,11 +115,12 @@
 
 
                     <div class="card-footer">
-                        <small class="text-muted">Post Id - 123456 | Posted On - 25/08/2003</small>
+                        <small class="text-muted">Post Id - {{post.post_id}} | Posted On - {{post.posted_on}}</small>
                     </div>
                 </div>
 
             </div>
+            {% endfor %}
 
         </div>
     </div>

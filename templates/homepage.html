@@ -59,11 +59,11 @@
     <div class="row row-cols-1 row-cols-md-2 g-4 m-2">
         {% for post in posts %}
         <div class="col">
-            <div class="card">
+            <div class="card" style="height: 100%;">
                 <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
-                    <p class="card-text" style="height: 125px;">{{post.description}}</p>
+                    <p class="card-text"">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
                 <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>

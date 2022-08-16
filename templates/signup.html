@@ -5,6 +5,8 @@
 
 {% block body %}
 
+
+
 <div class="container">
     {% for message in messages %}
 
@@ -35,7 +37,9 @@
         <input type="email" name="email" id="mail" class="form-control">
 
         <label for="pass1">Password</label>
-        <input type="password" name="password1" id="pass1" class="form-control">
+        <input type="password" name="password1" id="pass1" class="form-control" oninput="strengthChecker()">
+        <div id="strength-bar" class="mt-2"></div>
+        <p id="msg" style="font-family: sans-serif;"></p>
 
         <label for="pass2">Confirm Password</label>
         <input type="password" name="password2" id="pass2" class="form-control">
@@ -53,5 +57,7 @@
 </div>
 
 
+<link rel="stylesheet" href="{% static 'css/strength.css' %}">
+<script src="{% static 'js/strength.js' %}"></script>
 
 {% endblock body %}

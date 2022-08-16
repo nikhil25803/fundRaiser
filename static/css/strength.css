@@ -1,0 +1,13 @@
+
+.strength{
+    width: 25%;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    bottom: 5px;
+}
+#strength-bar{
+    background-color: #dcdcdc;
+    height: 10px;
+    position: relative;
+}

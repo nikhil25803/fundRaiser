@@ -25,7 +25,7 @@
                     <p class="card-text" >{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
-                <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>
+                <a href="{% url 'payment-page' post.post_id %}" class="btn btn-primary">Donate to {{post.upi_id}}</a>
                 {% else %}
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}

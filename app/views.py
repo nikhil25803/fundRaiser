@@ -1,9 +1,15 @@
+from importlib.resources import contents
+from lib2to3.pytree import Node
+from tkinter.font import names
+from turtle import pos
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
+
+from raiser.settings import STATIC_URL, MEDIA_URL
 from .models import NewPostModel
 from django.core.mail import send_mail
 
@@ -12,11 +18,12 @@ try:
     from validate_email_address import validate_email
 except:
     print("Error: while importing:")
-
 import random
-
-import os
-
+from .savePic import saveImg
+import qrcode
+import pyqrcode
+import png
+from pyqrcode import QRCode
 # Create your views here.
 
 
@@ -51,7 +58,9 @@ def log_in(request):
 
 
 def log_out(request):
+
     logout(request)
+
     messages.success(request, 'You are now logged out !')
     return redirect('/')
 
@@ -139,12 +148,11 @@ def profile(request):
 
     # Get filtered data from the Models
     by_user = request.user.username
-    user_posts = NewPostModel.objects.filter(posted_by = f'{by_user}')
+    user_posts = NewPostModel.objects.filter(posted_by=f'{by_user}')
     print(user_posts)
     context = {
-        'user_posts':user_posts,
+        'user_posts': user_posts,
     }
-
 
     if request.method == 'POST':
         title = request.POST['title']
@@ -180,3 +188,23 @@ def profile(request):
 
     else:
         return render(request, 'profile.html', context)
+
+
+@login_required(login_url='/login')
+def payments(request, pk):
+
+    posts = NewPostModel.objects.filter(post_id=f"{pk}")
+    details = []
+    for post in posts:
+        details.append(post.post_id)
+        details.append(post.upi_id)
+    by = request.user.username
+    upi_id = details[1]
+
+    # QR Code for Payments
+    upiUrl = f'upi://pay?pn={by}&pa={upi_id}&cu=INR'
+    url = pyqrcode.create(upiUrl)
+    ans = url.svg('./media/'+f"{details[0]}.svg", scale=8)
+    
+
+    return render(request, 'payments.html', {'posts': posts})

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Donate{% endblock title %}
+
+{% block body %}
+
+
+
+<div class="container mt-3">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-12">
+            <div class="card border-success">
+                <h5 class="card-header">Paying to - {{post.post_id}}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.description}}</p>
+                    <img src="../media/{{post.post_id }}.svg" class="card" alt="...">
+                    <button>Download</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<script>
+    let btnDownload = document.querySelector('button');
+    let img = document.querySelector('img');
+    // Must use FileSaver.js 2.0.2 because 2.0.3 has issues.
+    btnDownload.addEventListener('click', () => {
+        let imagePath = img.getAttribute('src');
+        let fileName = getFileName(imagePath);
+        saveAs(imagePath, fileName);
+    });
+    function getFileName(str) {
+        return str.substring(str.lastIndexOf('/') + 1)
+    }
+</script>
+
+{% endblock body %}

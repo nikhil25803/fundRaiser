@@ -97,22 +97,7 @@
             <div class="col">
                 <div class="card" style="height: 100%;">
                     <h5 class="card-header">{{post.title}}</h5>
-                    <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <a href="#">
-                            <button class="btn btn-info">
-                                Update
-                            </button>
-                        </a>
-
-                        <a href="#">
-                            <button class="btn btn-danger">
-                                Delete
-                            </button>
-                        </a>
-
-                    </div>
-
+                    <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top"  width="400" height="200" alt="...">
 
                     <div class="card-footer">
                         <small class="text-muted">Post Id - {{post.post_id}} | Posted On - {{post.posted_on}}</small>

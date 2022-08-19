@@ -3,8 +3,6 @@
 {% block title %}Homepage{% endblock title %}
 {% block body %}
 
-<!-- carousel -->
-
 {% for message in messages %}
 
 <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
@@ -60,18 +58,18 @@
         {% for post in posts %}
         <div class="col">
             <div class="card" style="height: 100%;">
-                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
+                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" width="400" height="350" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
                     <p class="card-text"">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
-                <a href="#" class="btn btn-primary">Donate to {{post.upi_id}}</a>
+                <a href="{% url 'payment-page' post.post_id %}" class="btn btn-primary">Donate to {{post.upi_id}}</a>
                 {% else %}
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}
                 <div class="card-footer" style="position: sticky;">
-                    <small class="text-muted">Post Id - {{post.post_id}} | By Nikhil Raj | On -
+                    <small class="text-muted">Post Id - {{post.post_id}} | Posten On -
                         {{post.posted_on}}</small>
                 </div>
             </div>
@@ -90,20 +88,14 @@
     </h3>
 
     <div class="card-body">
-        <h5 class="card-title">Heading 1</h5>
-        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, commodi rem quo ullam
-            repellat dicta dignissimos a dolorem cupiditate laudantium at necessitatibus non quia odit sit neque
-            temporibus aperiam velit minima ipsa fugiat nostrum? Autem molestiae doloribus eligendi, hic velit tenetur
-            voluptatem amet minus mollitia quia repellendus cumque, ex et.</p>
+        <h5 class="card-title">What is Fund Raisers?</h5>
+        <p class="card-text">It is an open-source online platform that helps you raise funds for your upcoming projects, community, or startup idea. On this platform, you will various needy ones you might help and can even post the same asking others to step ahead and help.</p>
 
-        <h5 class="card-title">Heading 1</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit facere numquam animi cum
-            officia non saepe recusandae? Placeat odit possimus minima voluptate illum deleniti deserunt quos vel, ut
-            tempora error!</p>
+        <h5 class="card-title">Features</h5>
+        <p class="card-text">Features include login, logout, and a dynamic admin dashboard for the users to create a new post and review previous posts. Email verification is added for the verification process. Credentials are sent to the new users as welcome mail. <br>Other features include a password strength checker, response messages from the server side</p>
 
-        <h5 class="card-title">Heading 1</h5>
-        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium amet voluptatum iure,
-            quasi ex fugiat?.</p>
+        <h5 class="card-title">Want to contribute?</h5>
+        <p class="card-text">Every changes and required contributions are welcomed.  Click <a href="https://github.com/nikhil25803/fundRaiser" style="text-decoration: none;" target="_blank">Here</a></p>
 
     </div>
 </div>

@@ -1,6 +1,4 @@
-from importlib.resources import contents
-from lib2to3.pytree import Node
-from tkinter.font import names
+
 from turtle import pos
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -8,8 +6,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
-
-from raiser.settings import STATIC_URL, MEDIA_URL
 from .models import NewPostModel
 from django.core.mail import send_mail
 
@@ -19,16 +15,13 @@ try:
 except:
     print("Error: while importing:")
 import random
-from .savePic import saveImg
-import qrcode
 import pyqrcode
-import png
-from pyqrcode import QRCode
-# Create your views here.
 
 
+# Homepage
 def homepage(request):
 
+    # Fetching data from the Model
     posts = NewPostModel.objects.all()
     context = {
         'posts': posts,
@@ -37,6 +30,7 @@ def homepage(request):
     return render(request, 'homepage.html', context)
 
 
+# Login Page
 def log_in(request):
 
     if request.method == 'POST':
@@ -50,13 +44,13 @@ def log_in(request):
             return redirect('/')
         else:
             messages.warning(request, 'Wrong Credentials')
-            print('Problem')
             return render(request, 'login_page.html')
     else:
 
         return render(request, 'login_page.html')
 
 
+# Logout Call
 def log_out(request):
 
     logout(request)
@@ -65,6 +59,7 @@ def log_out(request):
     return redirect('/')
 
 
+# Page containing all the posts
 def donate_page(request):
 
     posts = NewPostModel.objects.all()
@@ -74,7 +69,7 @@ def donate_page(request):
 
     return render(request, 'donator.html', context)
 
-
+# Sign-up Page
 def sign_up(request):
 
     if request.method == 'POST':
@@ -149,11 +144,11 @@ def profile(request):
     # Get filtered data from the Models
     by_user = request.user.username
     user_posts = NewPostModel.objects.filter(posted_by=f'{by_user}')
-    print(user_posts)
     context = {
         'user_posts': user_posts,
     }
 
+    # Create post feature for the users
     if request.method == 'POST':
         title = request.POST['title']
         description = request.POST['description']
@@ -193,6 +188,7 @@ def profile(request):
 @login_required(login_url='/login')
 def payments(request, pk):
 
+    # Filtering out posts on the basis of Post Id
     posts = NewPostModel.objects.filter(post_id=f"{pk}")
     details = []
     for post in posts:
@@ -201,7 +197,7 @@ def payments(request, pk):
     by = request.user.username
     upi_id = details[1]
 
-    # QR Code for Payments
+    # Generating QR Code for Payments in SVG form and storing in the media folder
     upiUrl = f'upi://pay?pn={by}&pa={upi_id}&cu=INR'
     url = pyqrcode.create(upiUrl)
     ans = url.svg('./media/'+f"{details[0]}.svg", scale=8)

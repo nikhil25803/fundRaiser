@@ -19,7 +19,7 @@
         {% for post in posts %}
         <div class="col">
             <div class="card" style="height: 100%;">
-                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" alt="...">
+                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" width="400" height="250" alt="...">
                 <div class="card-body" >
                     <h5 class="card-title">{{post.title}}</h5>
                     <p class="card-text" >{{post.description}}</p>
@@ -30,7 +30,7 @@
                 <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
                 {% endif %}
                 <div class="card-footer" style="position: sticky;">
-                    <small class="text-muted">Post Id - {{post.post_id}} | By Nikhil Raj | On - {{post.posted_on}}</small>
+                    <small class="text-muted">Post Id - {{post.post_id}} | Posted On - {{post.posted_on}}</small>
                 </div>
             </div>
 

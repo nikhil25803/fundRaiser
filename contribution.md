@@ -1,24 +1,31 @@
-### fundRaiser
-A fund raising Django Webapplication.
+## Fund Raisers
+
+**At first, fork this repositories**
 
 
-#### Clone the repository 
-`git clone https://github.com/nikhil25803/fundRaiser.git`
+### Clone the repository 
+`git clone https://github.com/<your_username>/fundRaiser.git`
 
-#### Change the director
+### Change the director
 `$ cd fundRaiser`
 
-#### Activate the virtual enviroment
+### Activate the virtual enviroment
++ For Windows
 `venv\Scripts\Activate.ps1`
 
-#### Install the dependencies
++ For Linux/MacOS
+`source venv/scripts/activate`
+
+### Install the dependencies
 `pip install -r requirements.txt`
 
-#### Run migration commands
+### Run migration commands
 `python manage.py make migrations`
 
-#### Save the migrateions
+### Save the migrateions
 `python manage.py migrate`
 
-#### Run the server
+### Run the server
 `python manage.py runserver`
+
+**Make the desired changes**

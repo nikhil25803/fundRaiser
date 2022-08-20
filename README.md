@@ -21,48 +21,63 @@ Click [here]('./contribution.md) for the project setup, installation guide and c
 
 ## Sneak Peek 👀
 
-+ ### **Homepage** - User-friendly UI contains basic info about the project, recent posts, and required links.
++ ### **Homepage** 
+User-friendly UI contains basic info about the project, recent posts,and required links.
+
 [![image](https://www.linkpicture.com/q/fundsHomepage.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
-+ ### **Donate Page** - All the posts posted will be displayed here with a title, description, image, a unique post id, and a link for the payment page with UPI address.
++ ### **Donate Page**
+All the posts posted will be displayed here with a title, description, image, a unique post id, and a link for the payment page with UPI address.
+
 [![image](https://www.linkpicture.com/q/loginAsdiffUser.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
 
-+ ### **Sign-up page** - Join us filling the sign-up form. This signup form with a password strength checker and email verification will respond to you in a situation like an email id already registered, provided the email doesn't exist, the password didn't match, or too small with an interactive displayed message.
++ ### **Sign-up page**  
+Join us filling the sign-up form. This signup form with a password strength checker and email verification will respond to you in a situation like an email id already registered, provided the email doesn't exist, the password didn't match, or too small with an interactive displayed message.
+
 [![image](https://www.linkpicture.com/q/signUpform.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
-+ ### On successful signup, you will receive a welcome email from the website containing all the credentials using which you can log in and access the website.
+On successful signup, you will receive a welcome email from the website containing all the credentials using which you can log in and access the website.
+
 [![image](https://www.linkpicture.com/q/welcomeMail.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
 
 
-+ ### **Login Page** - Use your credentials to Login and access the website
++ ### **Login Page** 
+Use your credentials to Login and access the website
+
 [![image](https://www.linkpicture.com/q/loginPage.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
 
-+ ### **User Dashboard** - A dynamic dashboard is provided to all the users where they can add a new post using a form and can see their last post posted here.
++ ### **User Dashboard** 
+A dynamic dashboard is provided to all the users where they can add a new post using a form and can see their last post posted here.
+
 [![image](https://www.linkpicture.com/q/dashboard_4.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
 
-+ ### **Create a Post** - You can create a new post by filling out the form provided in the dashboard. Fill the details accordingly and click _POST_
++ ### **Create a Post** 
+You can create a new post by filling out the form provided in the dashboard. Fill the details accordingly and click _POST_
+
 [![image](https://www.linkpicture.com/q/newPostForm.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
----
 
-+ ### Now the post will be visible on the _/donate_ page. Click on the _Donate_ button to route to the payment page.
+
+Now the post will be visible on the _/donate_ page. Click on the _Donate_ button to route to the payment page.
+
 [![image](https://www.linkpicture.com/q/loginAsdiffUser.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
 ---
 
-+ ### **Payment Page** - The payment page is provided with all the details of the post like post Id, title, and description which you can use to cross-check.
++ ### **Payment Page** 
+The payment page is provided with all the details of the post like post Id, title, and description which you can use to cross-check.
 
 [![image](https://www.linkpicture.com/q/paymentPage.png)](https://www.linkpicture.com/view.php?img=LPic630058d665011415661358)
 
-+ ### This page will show you the QR code which you can use to scan through any payment application according to your preference.
+This page will show you the QR code which you can use to scan through any payment application according to your preference.
 
 ---

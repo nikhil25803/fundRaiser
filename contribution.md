@@ -29,3 +29,16 @@
 `python manage.py runserver`
 
 **Make the desired changes**
+
+### Create a new branch
+`git branch <branch_name>`
+
+### Checkout to your new created branch
+`git checkout <branch_name>`
+
+### Add changes to the staging area
+`git add .`
+
+### Commit the chnages with a message
+`git commit -m "Your Message"`
+

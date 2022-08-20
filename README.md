@@ -17,7 +17,7 @@ It is an open-source online platform that helps you raise funds for your upcomin
 Every change, issue, and required contribution is welcome.
 
 
-Click [here]('./contribution.md) for the project setup, installation guide and contribution guidelines
+Click [here](https://github.com/nikhil25803/fundRaiser/blob/main/contribution.md) for the project setup, installation guide and contribution guidelines
 
 ## Sneak Peek 👀
 

@@ -81,3 +81,8 @@ The payment page is provided with all the details of the post like post Id, titl
 This page will show you the QR code which you can use to scan through any payment application according to your preference.
 
 ---
+ ## Wants to take a look on the code base?🧐
+
+ Most of the code is written in the [`views.py`](https://github.com/nikhil25803/fundRaiser/tree/main/raiser) file, located in the `fundRaiser/app/views.py`.
+
+ ---

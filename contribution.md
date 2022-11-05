@@ -33,7 +33,12 @@
 ### Create a new branch and checkout the branch
 `git checkout -b <branch_name>`
 
-### Add changes to the staging area
+###            OR
+
+### Add particular file to the staging area
+`git add <file-name>`
+
+### Add all changes to the staging area
 `git add .`
 
 ### Commit the chnages with a message

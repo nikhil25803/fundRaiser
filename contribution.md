@@ -30,11 +30,8 @@
 
 **Make the desired changes**
 
-### Create a new branch
-`git branch <branch_name>`
-
-### Checkout to your new created branch
-`git checkout <branch_name>`
+### Create a new branch and checkout the branch
+`git checkout -b <branch_name>`
 
 ### Add changes to the staging area
 `git add .`

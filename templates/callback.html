@@ -4,15 +4,28 @@
 {% block body %}
 <div class="container">
 
-    {% if status == "Success" %}
-    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Payment Successful</div>
+    <div class="row">
+        {% if status == "Success" %}
+        <div class="">
+            <div class="container">
+                <object data="{% static 'Authentication-bro.svg' %}" type="" height="100%"></object>
+                <div class="card text-white text-center bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Payment Successful</div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="">
+            <div class="container">
+                <object data="{% static 'Online transactions-rafiki.svg' %}" type="" height="100%"></object>
+                <div class="card text-white text-center bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Payment Successful</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Payment Failed</div>
-    </div>
-    {% endif %}
 
 </div>
 {% endblock body %}

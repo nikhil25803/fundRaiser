@@ -215,6 +215,9 @@ def payments(request, pk):
 def order_payment(request):
     if request.method == "POST":
         name = request.POST.get("name")
+        mail = request.POST.get("email")
+        mobile = request.POST.get("mobilenumber")
+        description = request.POST.get("description")
         amount = request.POST.get("amount")
         client = razorpay.Client(
             auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
@@ -233,6 +236,10 @@ def order_payment(request):
                 "callback_url": "http://" + "127.0.0.1:8000" + "/razorpay/callback/",
                 "razorpay_key": settings.RAZORPAY_KEY_ID,
                 "order": order,
+                "name":name,
+                "email":mail,
+                "mobile":mobile,
+                "description":description
             },
         )
     return render(request, "payment.html")

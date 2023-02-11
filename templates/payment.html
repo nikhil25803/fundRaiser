@@ -10,18 +10,18 @@
             amount: "{{order.amount}}",
             currency: "INR",
             name: "{{order.name}}",
-            description: "Test Transaction",
-            image: "https://example.com/your_logo",
+            description: "{{description}}",
+            image: "{% static 'fundraising.png' %}",
             order_id: "{{order.provider_order_id}}",
             callback_url: "{{callback_url}}",
             redirect: true,
             prefill: {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999"
+                "name": "{{name}}",
+                "email": "{{email}}",
+                "contact": "{{mobile}}"
             },
             notes: {
-                "address": "Razorpay Corporate Office"
+                "address": "Funds Raiser"
             },
             theme: {
                 "color": "#3399cc"

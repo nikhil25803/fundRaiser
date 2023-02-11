@@ -7,7 +7,12 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from .models import NewPostModel
 from django.core.mail import send_mail
-
+import razorpay
+from .constants import PaymentStatus
+from .models import Order
+from raiser import settings
+import json
+from django.views.decorators.csrf import csrf_exempt
 # Other Imports
 try:
     from validate_email_address import validate_email
@@ -69,6 +74,8 @@ def donate_page(request):
     return render(request, 'donator.html', context)
 
 # Sign-up Page
+
+
 def sign_up(request):
 
     if request.method == 'POST':
@@ -200,6 +207,63 @@ def payments(request, pk):
     upiUrl = f'upi://pay?pn={by}&pa={upi_id}&cu=INR'
     url = pyqrcode.create(upiUrl)
     ans = url.svg('./media/'+f"{details[0]}.svg", scale=8)
-    
 
     return render(request, 'payments.html', {'posts': posts})
+
+@login_required(login_url='/login')
+def order_payment(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        razorpay_order = client.order.create(
+            {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
+        )
+        order = Order.objects.create(
+            name=name, amount=amount, provider_order_id=razorpay_order["id"]
+        )
+        order.save()
+        return render(
+            request,
+            "payment.html",
+            {
+                "callback_url": "http://" + "127.0.0.1:8000" + "/razorpay/callback/",
+                "razorpay_key": settings.RAZORPAY_KEY_ID,
+                "order": order,
+            },
+        )
+    return render(request, "payment.html")
+
+
+@csrf_exempt
+def callback(request):
+    def verify_signature(response_data):
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID,settings.RAZORPAY_KEY_SECRET))
+        return client.utility.verify_payment_signature(response_data)
+
+    if "razorpay_signature" in request.POST:
+        payment_id = request.POST.get("razorpay_payment_id", "")
+        provider_order_id = request.POST.get("razorpay_order_id", "")
+        signature_id = request.POST.get("razorpay_signature", "")
+        order = Order.objects.get(provider_order_id=provider_order_id)
+        order.payment_id = payment_id
+        order.signature_id = signature_id
+        order.save()
+        if not verify_signature(request.POST):
+            order.status = PaymentStatus.SUCCESS
+            order.save()
+            return render(request, "callback.html", context={"status": order.status})
+        else:
+            order.status = PaymentStatus.FAILURE
+            order.save()
+            return render(request, "callback.html", context={"status": order.status})
+    else:
+        payment_id = json.loads(request.POST.get("error[metadata]")).get("payment_id")
+        provider_order_id = json.loads(request.POST.get("error[metadata]")).get(
+            "order_id"
+        )
+        order = Order.objects.get(provider_order_id=provider_order_id)
+        order.payment_id = payment_id
+        order.status = PaymentStatus.FAILURE
+        order.save()
+        return render(request, "callback.html", context={"status": order.status})

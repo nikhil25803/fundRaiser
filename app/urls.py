@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout', views.log_out, name='user-logout'),
     path('profile', views.profile, name='profile-page'),
     path('payments/<str:pk>', views.payments, name='payment-page'),
+    path("payment/", views.order_payment, name="payment"),
+    path("razorpay/callback/", views.callback, name="callback"),
 ]

@@ -2,11 +2,17 @@
 {% load static %}
 {% block title %}Callback{% endblock title %}
 {% block body %}
-<div class="text-center" style="margin-top:20%">
+<div class="container">
+
     {% if status == "Success" %}
-    <h2>THANKS YOUR PAYMENT HAS BEEN RECEIVED</h2>
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Payment Successful</div>
+    </div>
     {% else %}
-    <h2>SORRY, YOUR PAYMENT HAS BEEN FAILED</h2>
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Payment Failed</div>
+    </div>
     {% endif %}
+
 </div>
 {% endblock body %}

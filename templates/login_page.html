@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container h-100">
     {% for message in messages %}
 
     <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
@@ -14,33 +14,38 @@
     {% endfor %}
 </div>
 
-<div class="container mt-3 mb-3 border-start border-end border-warning">
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="container">
+                <object data="{% static 'Authentication-bro.svg' %}" type="" height="100%"></object>
+            </div>
+        </div>
 
-    <div class="container">
-        <img src="{% static 'log-in.png' %}" alt="" class="rounded mx-auto d-block" width="300px" height="300px">
+        <div class="col-12 col-lg-6">
+            <h3 class="">
+                Enter the credentials
+            </h3>
+
+            <form method="POST">
+                {% csrf_token %}
+                <label for="mail">Username</label>
+                <input type="text" name="uname" id="mail" class="form-control">
+
+                <label for="pass1">Password</label>
+                <input type="password" name="password" id="pass1" class="form-control">
+
+                <button class="btn btn-outline-primary mt-1">Login</button>
+            </form>
+
+            <hr>
+
+            <h5 class="text-center">
+                New Here? Click <a href="{% url 'user-register' %}">here</a> to Signup
+
+            </h5>
+        </div>
     </div>
-
-    <h3 class="">
-        Login to get started ...
-    </h3>
-
-    <form method="POST">
-        {% csrf_token %}
-        <label for="mail">Username</label>
-        <input type="text" name="uname" id="mail" class="form-control">
-
-        <label for="pass1">Password</label>
-        <input type="password" name="password" id="pass1" class="form-control">
-
-        <button class="btn btn-outline-primary mt-1">Login</button>
-    </form>
-
-    <hr>
-    
-    <h5 class="text-center">
-        New Here? Click <a href="{% url 'user-register' %}">here</a> to Signup !!
-        
-    </h5>
 </div>
 
 

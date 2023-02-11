@@ -18,7 +18,7 @@
 <body>
 
   <!-- Navbar  -->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-gradient ">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-gradient " style="font-family: poppins;">
     <div class="container-fluid">
       <div class="border-end border-warning">
         <a class="navbar-brand" href="{% url 'homepage' %}">
@@ -50,13 +50,13 @@
 
 
         {% if user.is_authenticated %}
-        <button type="button" class="btn btn-outline-warning">
+        <button type="button" class="btn btn-outline-warning" style="font-family: poppins;">
           <a href="{% url 'user-logout' %}" style="text-decoration: none; color:white;">LogOut</a>
         </button>
 
         {% else %}
 
-        <button type="button" class="btn btn-outline-warning">
+        <button type="button" class="btn btn-outline-warning" style="font-family: poppins;">
           <a href="{% url 'user-login' %}" style="text-decoration: none; color:white;">LogIn/SignUp</a>
         </button>
 
@@ -87,7 +87,7 @@
         {% else %}
         {% endif %}
       </ul>
-      <p class="text-center text-muted">© 2022 Donator, Inc</p>
+      <p class="text-center text-muted">© 2023 Donator, Inc</p>
     </footer>
   </div>
 

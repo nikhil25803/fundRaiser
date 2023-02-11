@@ -11,63 +11,64 @@
 
 {% endfor %}
 
-<div class="border-start border-end border-warning m-3">
-    <div id="carouselExampleIndicators" class="carousel slide m-3" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+<div class="container">
+
+            <div id="carouselExampleIndicators" class="carousel slide m-3" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner m-1">
+                    <div class="carousel-item active">
+                        <img src="{% static 'quote1.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'quote2.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'quote3.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
-        <div class="carousel-inner m-1">
-            <div class="carousel-item active">
-                <img src="{% static 'quote1.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'quote2.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'quote3.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+
+</div>
+<hr>
+<div class="container text-center">
+    <h3 class="" style="font-family: poppins;">
+        Recent Posts
+    </h3>
 </div>
 
-
-<hr>
-
-<div class="border-start border-end border-warning m-3">
-    <h3 class="border-bottom border-warning m-1 text-center">
-        Recent Fund Raising Posts
-    </h3>
-
-
-    <div class="row row-cols-1 row-cols-md-2 g-4 m-2">
-        {% for post in posts %}
-        <div class="col">
-            <div class="card" style="height: 100%;">
-                <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" width="400" height="350" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{post.title}}</h5>
-                    <p class="card-text"">{{post.description}}</p>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-2">
+    {% for post in posts %}
+    <div class="col">
+        <div class="card" style="height: 75%;">
+            <img src="media/{{ MEDIA_URL }}{{ post.images }}" class="card-img-top" width="400" height="350" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text"">{{post.description}}</p>
                 </div>
                 {% if user.is_authenticated %}
-                <a href="{% url 'payment-page' post.post_id %}" class="btn btn-primary">Donate to {{post.upi_id}}</a>
-                {% else %}
-                <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
-                {% endif %}
+                <a href=" {% url 'payment-page' post.post_id %}" class="btn btn-primary m-2">Donate to
+                    {{post.upi_id}}</a>
+                    {% else %}
+                    <a href="{% url 'user-login' %}" class="btn btn-primary">Login to Donate</a>
+                    {% endif %}
                 <div class="card-footer" style="position: sticky;">
                     <small class="text-muted">Post Id - {{post.post_id}} | Posten On -
                         {{post.posted_on}}</small>
@@ -78,26 +79,56 @@
         {% endfor %}
 
     </div>
-</div>
 
-<hr>
+    <hr>
 
-<div class="border-start border-end border-warning m-3">
-    <h3 class="border-bottom border-warning  text-center m-1">
-        About Us
-    </h3>
-
-    <div class="card-body">
-        <h5 class="card-title">What is Fund Raisers?</h5>
-        <p class="card-text">It is an open-source online platform that helps you raise funds for your upcoming projects, community, or startup idea. On this platform, you will various needy ones you might help and can even post the same asking others to step ahead and help.</p>
-
-        <h5 class="card-title">Features</h5>
-        <p class="card-text">Features include login, logout, and a dynamic admin dashboard for the users to create a new post and review previous posts. Email verification is added for the verification process. Credentials are sent to the new users as welcome mail. <br>Other features include a password strength checker, response messages from the server side</p>
-
-        <h5 class="card-title">Want to contribute?</h5>
-        <p class="card-text">Every changes and required contributions are welcomed.  Click <a href="https://github.com/nikhil25803/fundRaiser" style="text-decoration: none;" target="_blank">Here</a></p>
-
+    <div class="container text-center">
+        <h3 class="" style="font-family: poppins;">
+            Abouts Us
+        </h3>
     </div>
-</div>
 
-{% endblock body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-4 mb-2">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'fundraising2.png' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">What is Fund Raisers?</h5>
+                        <p class="card-text">It is an open-source online platform that helps you raise funds for your
+                            upcoming projects, community, or startup idea. On this platform, you will various needy ones
+                            you might help and can even post the same asking others to step ahead and help.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 mb-2">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'features.png' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Features</h5>
+                        <p class="card-text">Features include login, logout, and a dynamic admin dashboard for the users
+                            to create a new post and review previous posts. Email verification is added for the
+                            verification process. Credentials are sent to the new users as welcome mail.
+                            Other features include a password strength checker, response messages from the server side
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'github.jpeg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Want to contribute?</h5>
+                        <p class="card-text">Every changes and required contributions are welcomed. Click <a
+                                href="https://github.com/nikhil25803/fundRaiser" style="text-decoration: none;"
+                                target="_blank">Here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endblock body %}

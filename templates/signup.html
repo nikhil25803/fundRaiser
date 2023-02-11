@@ -18,44 +18,49 @@
 </div>
 
 <div class="container">
-    <h3 class="text-center border-warning border-bottom m-3">Create an Account</h3>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <object data="{% static 'Sign up-bro.svg' %}" type="" height="100%"></object>
+        </div>
+        <div class="col-12 col-lg-6">
+            <h3 class="text-center border-warning border-bottom m-3">Create an Account</h3>
+
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- {{register_form|crispy}} -->
+
+                <label for="fname">First Name</label>
+                <input type="text" name="first_name" id="fname" class="form-control">
+
+                <label for="lname">Last Name</label>
+                <input type="text" name="last_name" id="lname" class="form-control">
+
+                <label for="mail">Email Address</label>
+                <input type="email" name="email" id="mail" class="form-control">
+
+                <label for="pass1">Password</label>
+                <input type="password" name="password1" id="pass1" class="form-control" oninput="strengthChecker()">
+                <div id="strength-bar" class="mt-2"></div>
+                <p id="msg" style="font-family: sans-serif;"></p>
+
+                <label for="pass2">Confirm Password</label>
+                <input type="password" name="password2" id="pass2" class="form-control">
+
+                <button class="btn btn-outline-primary mt-1">Register</button>
+            </form>
+
+
+            <hr>
+
+            <h5 class="text-center">
+                Already a user? Click <a href="{% url 'user-login' %}">here</a> to Login !!
+
+            </h5>
+        </div>
+    </div>
 </div>
-
-<div class="container">
-    <form method="POST">
-        {% csrf_token %}
-
-        <!-- {{register_form|crispy}} -->
-
-        <label for="fname">First Name</label>
-        <input type="text" name="first_name" id="fname" class="form-control">
-
-        <label for="lname">Last Name</label>
-        <input type="text" name="last_name" id="lname" class="form-control">
-
-        <label for="mail">Email Address</label>
-        <input type="email" name="email" id="mail" class="form-control">
-
-        <label for="pass1">Password</label>
-        <input type="password" name="password1" id="pass1" class="form-control" oninput="strengthChecker()">
-        <div id="strength-bar" class="mt-2"></div>
-        <p id="msg" style="font-family: sans-serif;"></p>
-
-        <label for="pass2">Confirm Password</label>
-        <input type="password" name="password2" id="pass2" class="form-control">
-
-        <button class="btn btn-outline-primary mt-1">Register</button>
-    </form>
-
-
-    <hr>
-
-    <h5 class="text-center">
-        Already a user? Click <a href="{% url 'user-login' %}">here</a> to Login !!
-
-    </h5>
-</div>
-
 
 <link rel="stylesheet" href="{% static 'css/strength.css' %}">
 <script src="{% static 'js/strength.js' %}"></script>

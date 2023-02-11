@@ -9,40 +9,90 @@
 <div class="container mt-3">
     <div class="row">
         {% for post in posts %}
-        <div class="col-12">
+        <div class="col-12 col-lg-6">
             <div class="card border-success">
-                <h5 class="card-header">Paying to - {{post.username}} | Post Id - {{post.post_id}}</h5>
+                <h5 class="card-header">Post Id - {{post.post_id}}</h5>
                 <div class="card-body">
                     <h5 class="card-title">Title - {{post.title}}</h5>
                     <p class="card-text">Description - {{post.description}}</p>
-                    <img src="../media/{{post.post_id }}.svg" class="card" alt="...">
-                    <button class="btn btn-sicess">Scan the QR code to pay.</button>
+                    <div class="d-flex justify-content-center">
+                        <img src="../media/{{post.post_id }}.svg" class="card" alt="...">
+                        <button class="btn btn-sicess">Scan the QR code to pay.</button>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
+        <div class="col-12 col-lg-6">
+            <div class="card border-success">
+                <h5 class="card-header">Pay using Razorpay</h5>
+                <div class="card-body mb-1">
+                    <form action="{% url 'payment' %}" method='POST'>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="InputName" class="form-label">Name</label>
+                            <input type="name" name="name" class="form-control" id="InputName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputEmail" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="InputEmail"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputMobile" class="form-label">Mobile</label>
+                            <input type="text" name="mobilenumber" class="form-control" id="InputMobile">
+                        </div>
+                        <div class="mb-2">
+                            <label for="InputMobile" class="form-label">Mobile</label>
+                            <input type="text" name="mobilenumber" class="form-control" id="InputMobile">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Amount</label>
+                            <input type="number" name="amount" class="form-control" id="exampleInputPassword1">
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-primary">Pay Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
     <div class="col-6 mx-auto" style="margin-top:10%;">
         <form action="{% url 'payment' %}" method='POST'>
             {% csrf_token %}
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Name</label>
-                <input type="name" name="name" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+                <label for="InputName" class="form-label">Name</label>
+                <input type="name" name="name" class="form-control" id="InputName">
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="InputMobile" class="form-label">Mobile</label>
+                <input type="text" name="mobilenumber" class="form-control" id="InputMobile">
+            </div>
+            <div class="mb-3">
+                <label for="InputMobile" class="form-label">Mobile</label>
+                <input type="text" name="mobilenumber" class="form-control" id="InputMobile">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Amount</label>
                 <input type="number" name="amount" class="form-control" id="exampleInputPassword1">
             </div>
+
             <div>
                 <button type="submit" class="btn btn-primary">Pay Now</button>
             </div>
         </form>
     </div>
-</div>
+</div> -->
 
 
 {% endblock body %}

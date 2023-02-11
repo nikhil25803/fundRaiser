@@ -210,14 +210,17 @@ def payments(request, pk):
 
     return render(request, 'payments.html', {'posts': posts})
 
+
 @login_required(login_url='/login')
 def order_payment(request):
     if request.method == "POST":
         name = request.POST.get("name")
         amount = request.POST.get("amount")
-        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        client = razorpay.Client(
+            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
         razorpay_order = client.order.create(
-            {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
+            {"amount": int(amount) * 100, "currency": "INR",
+             "payment_capture": "1"}
         )
         order = Order.objects.create(
             name=name, amount=amount, provider_order_id=razorpay_order["id"]
@@ -238,7 +241,8 @@ def order_payment(request):
 @csrf_exempt
 def callback(request):
     def verify_signature(response_data):
-        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID,settings.RAZORPAY_KEY_SECRET))
+        client = razorpay.Client(
+            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
         return client.utility.verify_payment_signature(response_data)
 
     if "razorpay_signature" in request.POST:
@@ -258,7 +262,8 @@ def callback(request):
             order.save()
             return render(request, "callback.html", context={"status": order.status})
     else:
-        payment_id = json.loads(request.POST.get("error[metadata]")).get("payment_id")
+        payment_id = json.loads(request.POST.get(
+            "error[metadata]")).get("payment_id")
         provider_order_id = json.loads(request.POST.get("error[metadata]")).get(
             "order_id"
         )
